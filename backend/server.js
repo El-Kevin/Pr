@@ -8,7 +8,8 @@ const mongoose = require('./mongoose');
 app.use(express.json());
 
 // Middleware para servir archivos estáticos
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+
 
 app.use('/api/users', userRouter);
 app.use('/api/accounts', accountRouter);

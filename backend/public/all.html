@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>All</title>
+  </head>
+  <body>
+    <div>
+        <h1>Cambiar Contraseña</h1>
+        <form id="changePasswordForm">
+          <label for="usernameC">Nombre de Usuario:</label>
+          <input type="text" id="usernameC" name="username"><br><br>
+          <label for="currentPassword">Contraseña Actual:</label>
+          <input type="password" id="currentPassword" name="currentPassword"><br><br>
+          <label for="newPassword">Nueva Contraseña:</label>
+          <input type="password" id="newPassword" name="newPassword"><br><br>
+          <input type="submit" value="Cambiar Contraseña">
+        </form>
+        <p id="messageC"></p>
+        <script>
+          const form = document.getElementById('changePasswordForm');
+          const message = document.getElementById('messageC');
+    
+          form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const username = form.username.value;
+            const currentPassword = form.currentPassword.value;
+            const newPassword = form.newPassword.value;
+    
+            try {
+              const response = await fetch(`/api/users/${username}/change-password`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ currentPassword, newPassword })
+              });
+              const result = await response.text();
+              message.innerText = result;
+            } catch (error) {
+              console.error(error);
+              message.innerText = 'Ha ocurrido un error';
+            }
+          });
+        </script>
+    </div>
+    <hr>
+    <div>
+        <h1>Login</h1>
+        <form id="login-form">
+          <label for="usernameL">Nombre de usuario:</label>
+          <input type="text" id="usernameL" name="username"><br>
+          <label for="passwordL">Contraseña:</label>
+          <input type="password" id="passwordL" name="password"><br>
+          <button type="submit">Iniciar sesión</button>
+        </form>
+        <script>
+          const form2 = document.getElementById('login-form');
+          form2.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const username = form2.elements.username.value;
+            const password = form2.elements.password.value;
+            const response = await fetch('/api/users/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ username, password })
+            });
+            const data = await response.json();
+            console.log(data.token);
+            // Hacer algo con el token devuelto por el servidor
+          });
+        </script>
+    </div>
+    <hr>
+    <div>
+        <script>
+  async function verificarUsuario() {
+    console.log('Verificando usuario...');
+    const usernameVU = document.getElementById('usernameVU').value;
+    const respuesta = await fetch(`/api/users/${usernameVU}`);
+    const resultadoVerificar = await respuesta.json();
+    const existe = resultadoVerificar.existe;
+    console.log(
+        `El usuario ${usernameVU} ${existe ? 'existe' : 'no existe'}, api/users/${username}`
+    );
+
+    const resultado = document.getElementById('resultadoVU');
+    if (existe) {
+      resultado.innerText = `El usuario ${usernameVU} existe.`;
+    } else {
+      resultado.innerText = `El usuario ${usernameVU} no existe.`;
+    }
+  }
+</script>
+</div>
+<hr>
+<div>
+  <h1>Eliminar usuario</h1>
+  <form>
+    <label for="usernameE">Nombre de usuario:</label>
+    <input type="text" id="usernameE" name="username"><br>
+    <label for="passwordE">Contraseña:</label>
+    <input type="password" id="passwordE" name="password"><br>
+    <button type="button" onclick="eliminarUsuario()">Eliminar cuenta</button>
+  </form>
+  <p id="resultadoE"></p>
+  <script>
+    async function eliminarUsuario() {
+      const username = document.getElementById('usernameE').value;
+      const password = document.getElementById('passwordE').value;
+      const respuesta = await fetch(`/api/users/${username}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+      const mensaje = await respuesta.text();
+      const resultado = document.getElementById('resultadoE');
+      resultado.innerText = mensaje;
+    }
+  </script>
+</div>
+<hr>
+
+<div> 
+
+    <h1>Crear un nuevo usuario</h1>
+    <form>
+      <label for="usernameCU">Nombre de usuario:</label>
+      <input type="text" id="usernameCU" name="username" required><br>
+  
+      <label for="emailCU">Correo electrónico:</label>
+      <input type="email" id="emailCU" name="email" required><br>
+  
+      <label for="passwordCU">Contraseña:</label>
+      <input type="password" id="passwordCU" name="password" required><br>
+      <button type="button" onclick="crearUsuario()">Crear cuenta</button>
+
+    </form>
+    <p id="resultadoCU"></p>
+    <script>
+        async function crearUsuario() {
+          const username = document.getElementById('usernameCU').value;
+          const password = document.getElementById('passwordCU').value;
+          const email = document.getElementById('emailCU').value;
+          const resultadoCU = document.getElementById('resultadoCU');
+          const respuesta = await fetch(`/api/users/create`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password, email })
+          });
+          const mensaje = await respuesta.text();
+          console.log(mensaje, 'mensaje');
+          resultadoCU.innerText = mensaje;
+        }
+      </script>
+
+</div>
+</body>
+</html>
+
+
+
+            
