@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/e093a0a7c8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/dashboard-style.css">
+    
+
+</head>
+
+<body>
+    
+    <header class = "header">
+        <div class= "header_logo">
+                <a class = "header_logo_link">
+                    <img src="../img/logo.png" alt="Imagen del logotipo" class = "imglogo">      
+                </a>
+        </div>
+        <nav class = "header_nav">
+            <ul class = "header_nav_list">
+                <li class = "header_nav_item">
+                    <a href="#service" class = "header_nav_link">Servicios</a>
+                </li>
+                <li class = "header_nav_item">
+                    <a href="login.html" class = "header_nav_link">Iniciar Sesion</a>
+                </li>
+                <li class = "header_nav_item">
+                    <a href="register.html" class = "header_nav_link">Registrarse</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    
+
+    <!--SECCION GASTOS-->
+    <div class="container-fluid tittle">
+        <span class="text"> <b> GASTOS</b></span>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ingreso_gasto">
+            Agregar Gasto
+            <i class="fa-solid fa-circle-plus"></i>
+        </button>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-6 diagrama">
+                AQUI VA EL DIAGRAMA
+            </div>
+            <div class="col-6 valores">
+                <table id="gastos_table">
+                    <tr>
+                        <th></th>
+                        <th>Valor</th>
+                        <th></th>
+                    </tr>
+                    
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <!-- Ventana Emergente -->
+        <div class="modal fade" id="ingreso_gasto" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!-- Encabezado -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Ingrese los datos del gasto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- Cuerpo -->
+                    <div class="modal-body">
+                        <!-- Formulario -->
+                        <form>
+                            <div class="form-group">
+                                <label for="nombre">Tipo de gasto</label>
+                                <input type="text" class="form-control" id="tipo_gasto" placeholder="Tipo de gasto">
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido">Valor</label>
+                                <input type="text" class="form-control" id="valor_gasto" placeholder="Valor del gasto">
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-- Pie -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" >Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container my-5">
+        <!-- Ventana Emergente -->
+        <div class="modal fade" id="modifico_gasto" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!-- Encabezado -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Los datos de este gasto son: </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- Cuerpo -->
+                    <div class="modal-body">
+                        <!-- Formulario -->
+                        <form>
+                            <div class="form-group">
+                                <label for="nombre">Tipo de gasto</label>
+                                <input type="text" class="form-control" id="cambio_tipo" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido">Valor</label>
+                                <input type="text" class="form-control" id="cambio_valor" placeholder="">
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-- Pie -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="cambioGasto()">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--SECCION INGRESOS-->
+
+    
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+    <script src="../scripts/dashboard-script.js"></script>
+
+</body>
+
+</html>

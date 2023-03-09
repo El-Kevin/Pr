@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anthony Chamba",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.3.4",
+    "bcrypt": "^5.1.0",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mocha": "^10.2.0",
+    "mongoose": "^7.0.1",
+    "multer": "^1.4.5-lts.1",
+    "supertest": "^6.3.3"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
