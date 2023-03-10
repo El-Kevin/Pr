@@ -13,7 +13,7 @@ router.get('/:username', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
+// obtener una cuenta donde se te pase el id de la cuenta, o toda la cuenta en si.
 // Insertar una nueva cuenta para un usuario
 router.post('/:username', async (req, res) => {
     try {

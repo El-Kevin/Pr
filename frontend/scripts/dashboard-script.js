@@ -1,6 +1,20 @@
 
 
 
+// Obtener la cadena de consulta de la URL
+var queryString = window.location.search;
+
+// Crear un objeto URLSearchParams a partir de la cadena de consulta
+var params = new URLSearchParams(queryString);
+
+// Obtener el valor de la variable "username"
+var username = params.get("username");
+
+// Obtener el valor de la variable "email"
+var email = params.get("email");
+
+
+//-------------------------------------
 
 llenar_tabla();
 function llenar_tabla(){
@@ -154,3 +168,5 @@ function cambioGasto(){
   document.getElementById("label_cuenta_gasto_1").textContent = "HOLA";
 
 }
+
+

@@ -1,14 +1,19 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const userRouter = require('./routes/userRouter');
 const accountRouter = require('./routes/accountRouter');
 const profileImageRouter = require('./routes/profileImageRouter');
 const app = express();
 const mongoose = require('./mongoose');
 
+
+app.use(cors());
 app.use(express.json());
 
 // Middleware para servir archivos estáticos
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+
 
 app.use('/api/users', userRouter);
 app.use('/api/accounts', accountRouter);

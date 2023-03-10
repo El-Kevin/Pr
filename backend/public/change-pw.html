@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cambiar Contraseña</title>
+  </head>
+  <body>
+    <h1>Cambiar Contraseña</h1>
+    <form id="changePasswordForm">
+      <label for="username">Nombre de Usuario:</label>
+      <input type="text" id="username" name="username"><br><br>
+      <label for="currentPassword">Contraseña Actual:</label>
+      <input type="password" id="currentPassword" name="currentPassword"><br><br>
+      <label for="newPassword">Nueva Contraseña:</label>
+      <input type="password" id="newPassword" name="newPassword"><br><br>
+      <input type="submit" value="Cambiar Contraseña">
+    </form>
+    <p id="message"></p>
+    <script>
+      const form = document.getElementById('changePasswordForm');
+      const message = document.getElementById('message');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const username = form.username.value;
+        const currentPassword = form.currentPassword.value;
+        const newPassword = form.newPassword.value;
+
+        try {
+          const response = await fetch(`/api/users/${username}/change-password`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ currentPassword, newPassword })
+          });
+          const result = await response.text();
+          message.innerText = result;
+        } catch (error) {
+          console.error(error);
+          message.innerText = 'Ha ocurrido un error';
+        }
+      });
+    </script>
+  </body>
+</html>
