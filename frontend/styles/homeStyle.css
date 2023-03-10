@@ -75,7 +75,7 @@ body{
     color: #A1834F;
     margin-bottom: 5.4em;
 }
-.botonRegistar{
+.botonPrimario{
  display: flex;
  padding: 1.05556em 3.77778em;
  height: 3.33333em;
@@ -84,14 +84,41 @@ body{
  justify-content: center;
  border-radius: 11.11111em;
  background-color: #2F343B;
- margin-bottom: 5vw;
+ margin-bottom: 2vw;
+ box-shadow: #1E1F23 0px 0px 0px 1px inset;
+
 }
-.botonRegistar a{
+.botonPrimario a{
     text-decoration: none;
     color: white;
     font-weight: bold;
     font-size: 15px;
 }
+
+.botonSecundario{
+    display: flex;
+    padding: 1.05556em 3.77778em;
+    height: 3.33333em;
+    width: 11em;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11.11111em;
+    border-color: #2F343B;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 5vw;
+    box-shadow: #1E1F23 0px 0px 0px 1px inset;
+   }
+   .botonSecundario a{
+       text-decoration: none;
+       color: #2F343B;
+       font-weight: bold;
+       font-size: 15px;
+   }
+  
+
+
+
 .div_contenedor_p_i{
     display: flex;
     position: relative;
@@ -121,7 +148,8 @@ body{
     scroll-behavior: smooth;
 }
 .header_nav_link:hover{
-background-color: hsla(0, 0%, 100%, .3);
+background-color: #282d33; 
+color: white;
 }
 .seccion_Servicios{
     position: relative;

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="..\ESTILO\style.css">
+    <link rel="stylesheet" href="..\styles\style.css">
     <link href="https://fonts.googleapis.com/css2?family=Proxima+Nova&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,8 +13,9 @@
             <div class = "div_panel1">
                 <div class= "div_contenido1">
                     <h2 class = "logo">FINANZIFY</h2> 
-                    <p class = "texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Ab autem enim illum dolorum nisi. Aspernatur</p>
+                    <p class = "texto">En Finanzify, tu privacidad y seguridad son nuestra máxima prioridad. Por eso, nuestra plataforma utiliza las últimas tecnologías de cifrado y protección de datos para garantizar que tu información esté siempre segura y protegida.
+                        <br><br>    
+                        ¡Únete a Finanzify hoy y comienza a tomar el control de tus finanzas personales!</p>
                     <p class = "boton_registrar">
                         <a href="login.html" class = "link">Iniciar Sesion</a>
                     </p>
@@ -24,14 +25,18 @@
             <div class = "div_panel3">
                 <div class= "div_contenido3">
                     <h2 class = "titulo">REGISTRARSE</h2>
-                    <input  type="text" placeholder="Usuario" class="input">
-                    <input  type="text" placeholder="Contraseña" class="input">
-                    <input  type="text" placeholder="Confirmar Contraseña" class="input">
-                    <button type="button" class="btn_logIn">Registrar</button>
+                    <input id="usernameCU" type="text" placeholder="Usuario" class="input">
+                    <input id="passwordCU" type="password" placeholder="Contraseña" class="input">
+                    <input id="verifyPasswordCU" type="password" placeholder="Confirmar Contraseña" class="input">
+                    <input id="emailCU" type="email" placeholder="Correo electrónico" class="input">
+                    <button type="button" onclick="crearUsuario()" class="btn_logIn">Registrar</button>
+                    <p class = "texto">Al registrarte, aceptas nuestros <a href="#" class = "link">Términos de uso</a> y <a href="#" class = "link">Política de privacidad</a>.</p>
+                    <span id="resultadoCU"></span>
                 </div>
-
         </div>
-        
+     
     </div>
+
+<script src="../scripts/register.js"></script>
 </body>
 </html>

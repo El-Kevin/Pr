@@ -43,7 +43,11 @@ router.post('/login', async (req, res) => {
     if (!isMatch) {
       return res.status(404).send('Usuario o contraseña no encontrado');
     }
-    res.status(200).send('Usuario valido');
+    res.status(201).send({
+      username: user.username,
+      email: user.email,
+      // Agrega cualquier otra información que necesites aquí
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -144,7 +148,11 @@ router.post('/create', async (req, res) => {
     // Guardar el usuario recién creado en la base de datos
     await newUser.save();
 
-    res.status(201).send('Usuario creado exitosamente');
+    res.status(201).send({
+      username: newUser.username,
+      email: newUser.email,
+      // Agrega cualquier otra información que necesites aquí
+    });    
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
