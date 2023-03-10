@@ -11,6 +11,40 @@ var username = params.get("username");
 // Obtener el valor de la variable "email"
 var email = params.get("email");
 
+async function consultarCuentas() {
+  console.log('consultarCuentas username: ', username);
+  try {
+    const response = await fetch(`http://localhost:3000/api/accounts/${username}`);
+    const data = await response.json();
+    console.log(data);
+    return data; // Agregar esta línea para retornar data
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+
+async function getIngresosFromCuentas() {
+  const data = await consultarCuentas();
+  console.log('data from getIngresos: ', data);
+  const nombresIngresos = [];
+  const valoresIngresos = [];
+  
+  data.reduce((acc, curr) => {
+    if (curr.type === 'income') {
+      nombresIngresos.push(curr.name);
+      valoresIngresos.push(curr.value);
+    }
+    return acc;
+  }, []);
+  console.log('nombresIngresos: ', nombresIngresos);
+  console.log('valoresIngresos: ', valoresIngresos);
+  return { nombresIngresos, valoresIngresos };
+}
+
+
+
 
 //-------------------------------------
 
@@ -18,13 +52,24 @@ var email = params.get("email");
 llenar_tabla_gastos();
 llenar_tabla_ingresos();
 
-function llenar_tabla_gastos() {
+async function llenar_tabla_gastos() {
   var table = document.querySelector("#gastos_table > tbody");
 
-  // Crear un array con los datos a agregar a la tabla
-  var cuentas_gastos = ["Elemento 1", "Elemento 2", "Elemento 3"];
-  var valores_gastos = ["$1", "$2", "$3"];
-
+  const response = await fetch(`http://localhost:3000/api/accounts/${username}`);
+    const data = await response.json();
+    
+  const cuentas_gastos = [];
+  const valores_gastos = [];
+  
+  data.reduce((acc, curr) => {
+    if (curr.type === 'expense') {
+      cuentas_gastos.push(curr.name);
+      valores_gastos.push(curr.value);
+    }
+    return acc;
+  }, []);
+  console.log('cuentas_gastos: ', cuentas_gastos);
+  console.log('valores_gastos: ', valores_gastos);
 
   // Recorrer el array con un bucle for
   for (var i = 0; i < cuentas_gastos.length; i++) {
@@ -111,22 +156,30 @@ function llenar_tabla_gastos() {
 }
 
 
-function llenar_tabla_ingresos() {
+async function llenar_tabla_ingresos() {
   var table = document.querySelector("#ingresos_table > tbody");
-
-  // Crear un array con los datos a agregar a la tabla
-  var cuentas_ingresos = ["Ingreso 1", "Ingreso 2", "Ingreso 3"];
-  var valores_ingresos = ["$1", "$2", "$5"];
-
-
+  
+    const response = await fetch(`http://localhost:3000/api/accounts/${username}`);
+    const data = await response.json();
+    
+  const cuentas_ingresos = [];
+  const valores_ingresos = [];
+  
+  data.reduce((acc, curr) => {
+    if (curr.type === 'income') {
+      cuentas_ingresos.push(curr.name);
+      valores_ingresos.push(curr.value);
+    }
+    return acc;
+  }, []);
+  console.log('cuentas_ingresos: ', cuentas_ingresos);
+  console.log('valores_ingresos: ', valores_ingresos);
+  
   // Recorrer el array con un bucle for
   for (var i = 0; i < cuentas_ingresos.length; i++) {
     console.log(i);
-
-
     // Crear un nuevo elemento de fila (tr)
     var row = document.createElement("tr");
-
     // Crear un nuevo elemento de celda (td) y agregar el texto del elemento correspondiente
     var cell1 = document.createElement("td");
     var inp = document.createElement("input");
@@ -138,38 +191,26 @@ function llenar_tabla_ingresos() {
     lab.id = "label_cuenta_ingreso_" + (i + 1);
     lab.textContent = document.createTextNode(cuentas_ingresos[i]).textContent;
 
-
     var cell2 = document.createElement("td");
     cell2.className = "dinero_ingreso";
     cell2.id = "label_valor_ingreso_" + (i + 1);
-
     var cellText2 = document.createTextNode(valores_ingresos[i]);
-
 
     var cell3 = document.createElement("td");
     var a1 = document.createElement("a");
     a1.setAttribute("data-toggle", "modal")
     a1.setAttribute("data-target", "#modifico_ingreso");
-
-
     let i1 = document.createElement("i");
     i1.setAttribute("class", "fa-solid fa-pen");
-
-
-
     var a2 = document.createElement("a");
     let i2 = document.createElement("i");
     i2.setAttribute("class", "fa-solid fa-trash");
 
-
     cell1.appendChild(inp);
     cell1.appendChild(lab);
-
     cell2.appendChild(cellText2);
-
     cell3.appendChild(a1);
     a1.appendChild(i1);
-
     cell3.appendChild(a2);
     a2.appendChild(i2);
 
@@ -180,21 +221,15 @@ function llenar_tabla_ingresos() {
 
     // Agregar la fila a la tabla
     table.appendChild(row);
-
   }
 
-
   let rowTotal = document.createElement("tr");
-
   var cellTotal = document.createElement("td");
   cellTotal.style.textAlign = "center";
-
   let b1 = document.createElement("b");
   b1.textContent = "TOTAL";
-
   var cellValor = document.createElement("td");
   cellValor.id = "total_ingreso";
-
   var b2 = document.createElement("b");
 
   cellTotal.appendChild(b1);
@@ -203,6 +238,9 @@ function llenar_tabla_ingresos() {
   rowTotal.appendChild(cellValor);
   table.appendChild(rowTotal);
 }
+
+
+
 
 
 
@@ -341,4 +379,10 @@ function cambioGasto() {
   console.log(valor);
   console.log(tipo);
   console.log(anio);
-}
+  }
+ 
+
+
+  
+
+
