@@ -5,18 +5,26 @@
     /*border: 1px solid red;
     background-image: linear-gradient(90deg, #efefee 0, #fcd46b);*/ 
 }
+
+header{
+    padding-top: 100px;
+    background-color: #FCD469;
+    margin-bottom: 100px;
+}
+
 body{
-    font-family: 'Proxima Nova', Helvetica, Arial, sans-serif;  
+    font-family: 'Proxima Nova', Helvetica, Arial, sans-serif !important;  
     
 }
 .header{
     display: flex;
     justify-content: space-between;
-    margin-top: 80px;
+    
     align-items: center;
 }
 .header_logo{
     margin-left: 18vw;
+    z-index: 2;
 }
 .imglogo{
     width: 28%;
@@ -24,6 +32,7 @@ body{
 .header_nav{
     display: flex;
     margin-right: 16vw;
+    z-index: 2;
 }
 .header_nav_item{
     display: inline-block;
@@ -84,9 +93,7 @@ body{
  justify-content: center;
  border-radius: 11.11111em;
  background-color: #2F343B;
- margin-bottom: 2vw;
- box-shadow: #1E1F23 0px 0px 0px 1px inset;
-
+ margin-bottom: 1vw;
 }
 .botonPrimario a{
     text-decoration: none;
@@ -104,10 +111,9 @@ body{
     justify-content: center;
     border-radius: 11.11111em;
     border-color: #2F343B;
-    border-width: 1px;
     border-style: solid;
+    border-width: 3px;
     margin-bottom: 5vw;
-    box-shadow: #1E1F23 0px 0px 0px 1px inset;
    }
    .botonSecundario a{
        text-decoration: none;
@@ -115,8 +121,6 @@ body{
        font-weight: bold;
        font-size: 15px;
    }
-  
-
 
 
 .div_contenedor_p_i{
@@ -148,8 +152,7 @@ body{
     scroll-behavior: smooth;
 }
 .header_nav_link:hover{
-background-color: #282d33; 
-color: white;
+background-color: hsla(0, 0%, 100%, .3);
 }
 .seccion_Servicios{
     position: relative;

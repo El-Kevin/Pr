@@ -1,9 +1,7 @@
 /*INICIO HEADER*/
 
 /*FIN HEADER*/
-body{
-    background-color: #c7dea9;
-}
+
 .tittle {
     display: flex;
     align-items: center;
@@ -11,7 +9,7 @@ body{
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #B5DE80;
+    background-color: #fcd469;
 }
 
 .text {
@@ -20,7 +18,7 @@ body{
 }
 
 .btn {
-    background-color: #8DB658;
+    background-color: #d5b459;
     color: black;
     border: 1px solid black;
     padding: 10px;
@@ -30,7 +28,7 @@ body{
 }
 
 .btn:hover {
-    background-color: #678442;
+    background-color: #5c4f2a;
     color: white;
     border: 1px solid white;
     padding: 10px;
@@ -40,7 +38,7 @@ body{
 }
 
 .content {
-    background-color: #d9eebf;
+    background-color: #f6e1a9;
 }
 
 
